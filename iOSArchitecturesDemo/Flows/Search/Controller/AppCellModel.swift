@@ -15,7 +15,7 @@ struct AppCellModel {
 }
 
 final class AppCellModelFactory {
-    
+
     static func cellModel(from model: ITunesApp) -> AppCellModel {
         return AppCellModel(title: model.appName,
                             subtitle: model.company,
