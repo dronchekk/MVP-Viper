@@ -6,28 +6,47 @@
 //  Copyright © 2022 ekireev. All rights reserved.
 //
 
+import AVFoundation
 import UIKit
 
 class SongDetailViewController: UIViewController {
 
-    public var song: ITunesSong
+    @IBOutlet weak var trackImage: UIImageView!
 
-    private var songDetailView: SongDetailView {
-        return self.view as! SongDetailView
-    }
+    var player: AVAudioPlayer?
+         var viewModel: PlaybackViewModel?
 
-    init(song: ITunesSong) {
-        self.song = song
-        super.init(nibName: nil, bundle: nil)
+         init(selectIndex: Int, songs: [ITunesSong]) {
+
+             print(songs[selectIndex].bigArtwork)
+
+             viewModel = PlaybackViewModel(selectIndex: selectIndex, songs: songs)
+
+
+             super.init(nibName: "SongDetailViewController", bundle: nil)
+         }
+
+    override func viewDidLoad() {
+             super.viewDidLoad()
+
+             self.navigationController?.navigationBar.tintColor = UIColor.white;
+             self.navigationItem.largeTitleDisplayMode = .never
+
+             viewModel?.playPause()
     }
+        override func viewWillDisappear(_ animated: Bool) {
+                 super.viewWillDisappear(animated)
+
+                 viewModel.stop()
+             }
+
+    override func viewDidDisappear(_ animated: Bool) {
+             super.viewDidDisappear(animated)
+
+         }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func loadView() {
-        super.loadView()
-        self.view = SongDetailView()
-    }
+            fatalError("init(coder:) has not been implemented")
+        }
 
 }

@@ -14,7 +14,7 @@ final class AppDetailViewController: UIViewController {
 
     let app: ITunesApp
     private let presenter: AppDetailViewOutput
-    lazy var headerViewController = AppDetailHeaderViewController(app: app)
+    lazy var headerViewController = AppDetailHeaderViewController(app: app, presenter: presenter)
     lazy var infoViewController = AppDetailInfoViewController(app: app)
     lazy var whatsNewViewController = AppDetailWhatsNewViewController(app: app)
     lazy var screenshotsViewController = AppDetailScreenshotsViewController(app: app)
@@ -125,7 +125,7 @@ final class AppDetailViewController: UIViewController {
             whatsNewViewController.view.topAnchor.constraint(equalTo: self.infoViewController.view.bottomAnchor, constant: 10.0),
             whatsNewViewController.view.leftAnchor.constraint(equalTo: self.appDetailView.safeAreaLayoutGuide.leftAnchor),
             whatsNewViewController.view.rightAnchor.constraint(equalTo: self.appDetailView.safeAreaLayoutGuide.rightAnchor),
-            whatsNewViewController.view.heightAnchor.constraint(equalToConstant: AppDetailConstants.whatsNewViewSize + sizeText.height),
+            whatsNewViewController.view.heightAnchor.constraint(equalToConstant: AppDetailConstants.whatsNewViewSize + sizeText),
         ])
     }
 
