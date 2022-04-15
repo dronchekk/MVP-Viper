@@ -1,16 +1,20 @@
 PODS:
-  - Alamofire (4.6.0)
+  - Alamofire (4.9.1)
+  - HCSStarRatingView (1.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.6)
+  - HCSStarRatingView (~> 1.5)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - HCSStarRatingView
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
 
-PODFILE CHECKSUM: 61ee4633e3208571d46be9d93cea71dc7cb4d108
+PODFILE CHECKSUM: c7ea6f302b82d0e47c36a56ce7dc6d57562efdc3
 
 COCOAPODS: 1.11.2

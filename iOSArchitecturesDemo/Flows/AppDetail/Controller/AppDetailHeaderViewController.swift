@@ -13,7 +13,6 @@ class AppDetailHeaderViewController: UIViewController {
     // MARK: - Properties
     
     private let app: ITunesApp
-    
     private let imageDownloader = ImageDownloader()
     
     private var appDetailHeaderView: AppDetailHeaderView {
@@ -34,8 +33,6 @@ class AppDetailHeaderViewController: UIViewController {
     // MARK: - Lifecycle
     
     override func loadView() {
-        super.loadView()
-        
         self.view = AppDetailHeaderView()
     }
     
@@ -51,16 +48,22 @@ class AppDetailHeaderViewController: UIViewController {
         
         appDetailHeaderView.titleLabel.text = app.appName
         appDetailHeaderView.subtitleLabel.text = app.company
-        appDetailHeaderView.ratingLabel.text = app.averageRating.flatMap { "\($0)" }
     }
     
     private func downloadImage() {
-        guard let url = app.iconUrl else {
-            return
-        }
-        
-        imageDownloader.getImage(fromUrl: url) { [weak self] (image, _) in
-            self?.appDetailHeaderView.imageView.image = image
+        guard let url = app.iconUrl else { return }
+
+        imageDownloader.getImage(fromUrl: url) { [weak self] (image, error) in
+            guard let self = self else { return }
+
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+
+            DispatchQueue.main.async {
+                self.appDetailHeaderView.imageView.image = image
+            }
         }
     }
 }

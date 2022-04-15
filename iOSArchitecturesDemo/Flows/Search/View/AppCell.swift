@@ -9,6 +9,8 @@
 import UIKit
 
 final class AppCell: UITableViewCell {
+
+    static let reuseId = "AppCell"
     
     // MARK: - Subviews
     
